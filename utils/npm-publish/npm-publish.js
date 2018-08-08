@@ -9,11 +9,11 @@ const logPacked = require("@lerna/log-packed");
 module.exports = npmPublish;
 module.exports.npmPack = npmPack;
 
-function npmPublish(pkg, tag, { npmClient, registry }) {
+function npmPublish(pkg, tag, { npmClient, registry, otp }) {
   log.verbose("publish", pkg.name);
 
   const distTag = tag && tag.trim();
-  const opts = getExecOpts({ location: pkg.rootPath }, registry);
+  const opts = getExecOpts({ location: pkg.rootPath }, registry, otp);
   const args = ["publish", "--ignore-scripts"];
 
   if (distTag) {
